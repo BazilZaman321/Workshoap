@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import colorReducer from "./colorSlice"
-import counterReducer from "./counterSlice"; // ✅ Fixed spelling
+import counterReducer from "./counterSlice"; 
 
 const store = configureStore({
     reducer:{
