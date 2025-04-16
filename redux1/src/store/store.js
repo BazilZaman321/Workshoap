@@ -7,4 +7,4 @@ const store = configureStore({
   },
 })
 
-export default store; // 👈 important!
+export default store; 
