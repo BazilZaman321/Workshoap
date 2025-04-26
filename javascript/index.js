@@ -68,3 +68,19 @@
 // } 
 // outer()
 
+                    //exeptional hadling
+
+function divide(a,b){
+    try{
+        if(b===0){
+            throw new Error("you cant dividee by zero");
+        }console.log("result:" ,a/b)
+    }catch(error){
+        console.log(error.message);
+        
+    }finally{
+        console.log("done working");
+        
+    }
+}
+divide(10,0)
