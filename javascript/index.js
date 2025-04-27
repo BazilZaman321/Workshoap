@@ -70,17 +70,68 @@
 
                     //exeptional hadling
 
-function divide(a,b){
-    try{
-        if(b===0){
-            throw new Error("you cant dividee by zero");
-        }console.log("result:" ,a/b)
-    }catch(error){
-        console.log(error.message);
+// function divide(a,b){
+//     try{
+//         if(b===0){
+//             throw new Error("you cant dividee by zero");
+//         }console.log("result:" ,a/b)
+//     }catch(error){
+//         console.log(error.message);
         
-    }finally{
-        console.log("done working");
+//     }finally{
+//         console.log("done working");
         
-    }
-}
-divide(10,0)
+//     }
+// }
+// divide(10,0)
+
+
+                        // hositing with TDZ
+
+// console.log(a)
+// var a=10;
+
+// console.log(b)
+// var b=10;
+
+// console.log(c)
+// var c=10;
+
+                        //strict mode
+
+//use strict  mode on the top of the code
+
+// "use strict";
+
+
+                        //// call back function
+
+// function man() {
+//     console.log("i am done");
+// }
+// function good(callback){
+//     console.log("come fast")
+//     callback()
+// }
+// good(man)
+
+
+                        ////call back hell
+
+
+// setTimeout(()=>{
+//     console.log("one");
+//     setTimeout(()=>{
+//         console.log("one");
+//         setTimeout(()=>{
+//             console.log("one");
+//             setTimeout(()=>{
+//                 console.log("one");
+//             },1000)
+//         },1000)
+//     },1000)
+// },1000)
+
+
+////  promise
+
