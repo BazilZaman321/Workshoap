@@ -243,12 +243,14 @@
 // }
 // console.log(add(1)(2)(3));
 
-////    set 
+                            ////    set 
 
-let man=new set();
+// let man=new set();
 
-man.add("aaaaa");
-man.add("aaaaa");
-man.add("aaaaa");
+// man.add("aaaaa");
+// man.add("aaaaa");
+// man.add("aaaaa");
 
-console.log(man);
+// console.log(man);
+
+
