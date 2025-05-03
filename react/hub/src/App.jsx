@@ -14,23 +14,30 @@
 // }
 
 // export default Fruit
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// // Importing routing components from react-router-dom
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import UsersList from "./UserList";
-// import UserDetails from "./UserDetails";
+// Importing the components we created
+import UsersList from "./UserList";
+import UserDetails from "./UserDetails";
 
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<UsersList />} />
-//         <Route path="/user/:id" element={<UserDetails />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
+function App() {
+  return (
+    // BrowserRouter enables routing in React
+    <BrowserRouter>
+      <Routes>
+        {/* Route for home page that shows the user list */}
+        <Route path="/" element={<UsersList />} />
+        
+        {/* Route for showing user details when user clicks a name */}
+        <Route path="/user/:id" element={<UserDetails />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-// export default App;
+export default App;
 
 
 
@@ -107,50 +114,54 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 
-function UserList() {
-  const [users, setUsers] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState(null);
+// function UserList() {
+//   const [users, setUsers] = useState([]);
+//   const [selectedUserId, setSelectedUserId] = useState(null);
 
-  useEffect(() => {
-    // Replace this with your actual API link
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
+//   useEffect(() => {
+//     // Replace this with your actual API link
+//     fetch("https://jsonplaceholder.typicode.com/users")
+//       .then((res) => res.json())
+//       .then((data) => setUsers(data));
+//   }, []);
 
-  const handleNameClick = (id) => {
-    setSelectedUserId(id === selectedUserId ? null : id);
-  };
+//   const handleNameClick = (id) => {
+//     setSelectedUserId(id === selectedUserId ? null : id);
+//   };
 
-  return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">User List</h2>
-      {users.map((user) => (
-        <div
-          key={user.id}
-          className="mb-4 p-4 border rounded shadow cursor-pointer"
-        >
-          <p
-            className="font-medium text-blue-600"
-            onClick={() => handleNameClick(user.id)}
-          >
-            {user.name}
-          </p>
+//   return (
+//     <div className="p-4">
+//       <h2 className="text-xl font-bold mb-4">User List</h2>
+//       {users.map((user) => (
+//         <div
+//           key={user.id}
+//           className="mb-4 p-4 border rounded shadow cursor-pointer"
+//         >
+//           <p
+//             className="font-medium text-blue-600"
+//             onClick={() => handleNameClick(user.id)}
+//           >
+//             {user.name}
+//           </p>
 
-          {selectedUserId === user.id && (
-            <div className="mt-2 text-sm text-gray-700">
-              <p>Email: {user.email}</p>
-              <p>
-                Address: {user.address.street}, {user.address.city}
-              </p>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
+//           {selectedUserId === user.id && (
+//             <div className="mt-2 text-sm text-gray-700">
+//               <p>Email: {user.email}</p>
+//               <p>
+//                 Address: {user.address.street}, {user.address.city}
+//               </p>
+//             </div>
+//           )}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
-export default UserList;
+// export default UserList;
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
