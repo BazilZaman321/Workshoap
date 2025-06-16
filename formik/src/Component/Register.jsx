@@ -17,7 +17,7 @@ const LoginForm = () => {
     <div style={{ maxWidth: '400px', margin: '40px auto', padding: '20px', border: '1px solid black' }}>
       
       {/* Simple title */}
-      <h2 style={{ textAlign: 'center' }}>Login</h2>
+      <h2 >Login</h2>
 
       {/* Formik manages form state */}
       <Formik
@@ -32,7 +32,7 @@ const LoginForm = () => {
           // This replaces the normal <form> tag
           <Form>
             {/* Email Field */}
-            <div style={{ marginBottom: '15px' }}>
+            <div >
               <label>Email</label><br />
               <Field
                 type="email" // This is an input of type email
