@@ -1,79 +1,76 @@
-import { useState } from "react";
+import React, { useState } from 'react'; // React and useState for building and managing component state
 
-function Form() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({});
+const App = () => {
+  // Step 1: Create state for input values
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
+  // Step 2: Create state for error message
+  const [error, setError] = useState('');
+
+  // Step 3: Function to run when form is submitted
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Stop page from refreshing
 
-    const tempErrors = {};
-    if (!name) tempErrors.name = "Name is required";
-    if (!email.includes("@")) tempErrors.email = "Email is invalid";
-    if (password.length < 6) tempErrors.password = "Minimum 6 characters";
-
-    setErrors(tempErrors);
-
-    if (Object.keys(tempErrors).length === 0) {
-      alert("Form Submitted ✅");
-      setName("");
-      setEmail("");
-      setPassword("");
+    // Step 4: Basic validation checks
+    if (name === '' || email === '' || password === '') {
+      setError('All fields are required'); // show this if any field is empty
+    } else if (!email.includes('@')) {
+      setError('Email must include @'); // show this if email is invalid
+    } else if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+    } else {
+      alert('Form submitted successfully ✅'); // show alert on success
+      setError(''); // clear any previous errors
+      setName('');
+      setEmail('');
+      setPassword('');
     }
   };
 
+  // Step 5: return the UI (JSX)
   return (
-    <div className="max-w-sm mx-auto mt-10 p-4 bg-gray-100 rounded">
-      <h2 className="text-xl font-bold text-center mb-4">Simple Form</h2>
-      <form onSubmit={handleSubmit} className="space-y-3">
-        
-        {/* Name */}
-        <input
-          className="w-full p-2 border rounded"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
+    <div>
+      <h2>Simple Form</h2>
 
-        {/* Email */}
+      {/* Step 6: Display error message if exists */}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      {/* Step 7: The form starts here */}
+      <form onSubmit={handleSubmit}>
+        {/* Name input */}
+        <label>Name:</label><br />
         <input
-          className="w-full p-2 border rounded"
-          placeholder="Email"
+          type="text" // input is text type
+          value={name} // current value
+          onChange={(e) => setName(e.target.value)} // update name state on typing
+          style={{ border: '1px solid black', padding: '5px', marginBottom: '10px' }}
+        /><br /><br />
+
+        {/* Email input */}
+        <label>Email:</label><br />
+        <input
+          type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
-        {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
+          style={{ border: '1px solid black', padding: '5px', marginBottom: '10px' }}
+        /><br /><br />
 
-        {/* Password */}
-        <div className="relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            className="w-full p-2 border rounded"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button
-            type="button"
-            className="absolute right-2 top-2 text-sm text-blue-600"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
-        </div>
-        {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
+        {/* Password input */}
+        <label>Password:</label><br />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ border: '1px solid black', padding: '5px', marginBottom: '10px' }}
+        /><br /><br />
 
-        {/* Submit */}
-        <button className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-          Submit
-        </button>
+        {/* Submit button */}
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
-}
+};
 
-export default Form;
+export default App; // Exporting the component so it can be used in main.jsx

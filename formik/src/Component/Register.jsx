@@ -1,161 +1,99 @@
-// import React,{useState} from 'react'
-
-
-// const Register=()=>{
-//     const [password ,setPassword]=  useState(" ");
-
-//     const handleRegister =(e)=>{
-//         e.preventDefault();
-//         setPassword(" ");
-//     }
-//     return(
-//         <form onSubmit={handleRegister}>
-//             <input  
-//             type='password'
-//             placeholder='Enter password'
-//             value={password}
-//             onChange={(e)=>
-//                 setPassword(e.target.value)
-//             }required
-//             />
-
-//         </form>
-//     );
-// };
-
-
-// export default Register
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// import { Formik, Form, Field } from 'formik';
-// import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
-// const LoginForm = () => {
-//   const [showPassword, setShowPassword] = useState(false);
-
-//   return (
-//     <div className="max-w-md mx-auto mt-10 p-6 border border-gray-200 rounded-lg shadow-md">
-//       <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
-
-//       <Formik
-//         initialValues={{ email: '', password: '' }}
-//         onSubmit={(values) => {
-//           console.log(values);
-//         }}
-//       >
-//         {() => (
-//           <Form className="space-y-5">
-//             {/* Email Field */}
-//             <div>
-//               <label className="block text-sm font-medium mb-1">Email</label>
-//               <Field
-//                 type="email"
-//                 name="email"
-//                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-//               />
-//             </div>
-
-//             {/* Password Field with Eye Toggle */}
-//             <div>
-//               <label className="block text-sm font-medium mb-1">Password</label>
-//               <div className="relative">
-//                 <Field
-//                   type={showPassword ? 'text' : 'password'}
-//                   name="password"
-//                   className="w-full px-4 py-2 border border-gray-300 rounded pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//                 />
-//                 <span
-//                   className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-600"
-//                   onClick={() => setShowPassword(!showPassword)}
-//                 >
-//                   {showPassword ? <FaEyeSlash /> : <FaEye />}
-//                 </span>
-//               </div>
-//             </div>
-
-//             {/* Submit Button */}
-//             <button
-//               type="submit"
-//               className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-//             >
-//               Login
-//             </button>
-//           </Form>
-//         )}
-//       </Formik>
-//     </div>
-//   );
-// };
-
-// export default LoginForm;
-
+// Importing React and useState hook to use state in our component
 import React, { useState } from 'react';
 
-const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [show, setShow] = useState(false);
+// Importing Formik and its components
+import { Formik, Form, Field } from 'formik';
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-  };
+// Importing icons to show/hide password
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+const LoginForm = () => {
+  // This is a piece of state to track whether password is visible
+  const [showPassword, setShowPassword] = useState(false); 
+  // false means password is hidden
 
   return (
-    <div className="max-w-sm mx-auto mt-10 p-6 border border-gray-200 rounded shadow-md">
-      <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
+    // Main outer container with border and spacing using inline CSS
+    <div style={{ maxWidth: '400px', margin: '40px auto', padding: '20px', border: '1px solid black' }}>
+      
+      {/* Simple title */}
+      <h2 style={{ textAlign: 'center' }}>Login</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-1">Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
+      {/* Formik manages form state */}
+      <Formik
+        initialValues={{ email: '', password: '' }} // Starting values for form
+        onSubmit={(values) => {                      // What to do when form is submitted
+          console.log(values); // Shows the form values in the console
+        }}
+      >
 
-        <div>
-          <label className="block text-sm font-medium mb-1">Password</label>
-          <div className="flex">
-            <input
-              type={show ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+        {/* Render function for Formik's UI */}
+        {() => (
+          // This replaces the normal <form> tag
+          <Form>
+            {/* Email Field */}
+            <div style={{ marginBottom: '15px' }}>
+              <label>Email</label><br />
+              <Field
+                type="email" // This is an input of type email
+                name="email" // This matches the key in initialValues
+                style={{
+                  width: '100%',     // Full width of the container
+                  padding: '5px',    // Inner spacing
+                  border: '1px solid black' // Basic black border
+                }}
+              />
+            </div>
+
+            {/* Password Field with eye toggle */}
+            <div style={{ marginBottom: '15px' }}>
+              <label>Password</label><br />
+
+              <div style={{ position: 'relative' }}>
+                <Field
+                  type={showPassword ? 'text' : 'password'} // If showPassword is true, show as text
+                  name="password"
+                  style={{
+                    width: '100%',
+                    padding: '5px',
+                    border: '1px solid black',
+                    paddingRight: '30px' // Extra space for the eye icon
+                  }}
+                />
+
+                {/* This span holds the icon that toggles visibility */}
+                <span
+                  onClick={() => setShowPassword(!showPassword)} // Flip the value on click
+                  style={{
+                    position: 'absolute',         // Places icon inside the input
+                    right: '10px',                // Pushes it to the right
+                    top: '50%',                   // Moves to middle height-wise
+                    transform: 'translateY(-50%)', // Center vertically
+                    cursor: 'pointer'              // Changes cursor to hand
+                  }}
+                >
+                  {/* Show FaEye if hidden, FaEyeSlash if shown */}
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
+            </div>
+
+            {/* Submit Button */}
             <button
-              type="button"
-              onClick={() => setShow(!show)}
-              className="px-3 bg-gray-200 rounded-r hover:bg-gray-300"
+              type="submit" // Button type submit triggers Formik's onSubmit
+              style={{
+                width: '100%',
+                padding: '8px',
+                border: '1px solid black'
+              }}
             >
-              {show ? 'Hide' : 'Show'}
+              Login
             </button>
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-        >
-          Login
-        </button>
-      </form>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
 
-export default LoginForm;
+export default LoginForm; // So we can use this component elsewhere
