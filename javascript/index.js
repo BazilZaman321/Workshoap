@@ -254,3 +254,21 @@
 // console.log(man);
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function reducer(state=0,action) {
+    if (action.type==="increment"){
+        return state +1;
+    }
+    return state;
+}
+function reducer(state="GUEST",action) {
+    if (action.type==="SET-NAME"){
+        return action.name;
+    }
+    return state;
+}
+
+function allreducer (params) {
+    
+}
