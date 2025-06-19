@@ -256,19 +256,63 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function reducer(state=0,action) {
+// function countreducer(state=0,action) {
+//     if (action.type==="increment"){
+//         return state +1;
+//     }
+//     return state;
+// }
+// function namereducer(state="GUEST",action) {
+//     if (action.type==="SET_NAME"){
+//         return action.name;
+//     }
+//     return state;
+// }
+
+// function allreducer (state={}, action) {
+//     return{
+//     count:countreducer(state.count, action),
+//     name: namereducer(state.name, action)
+//     }
+    
+// };
+// let state = allreducer(undefined,{});
+
+// function dispatch(action) {
+//         state=allreducer(state,action);
+//         console.log(state);
+        
+    
+// };
+
+// dispatch({type:"increment"});
+// dispatch({type: "SET_NAME", name: "Bazil"});
+
+
+
+//////////////////////////////////////////////////////////////////
+
+const { combineReducers, createStore } = require('redux');
+
+function countreducer(state=0,action) {
     if (action.type==="increment"){
         return state +1;
     }
     return state;
 }
-function reducer(state="GUEST",action) {
-    if (action.type==="SET-NAME"){
+function namereducer(state="GUEST",action) {
+    if (action.type==="SET_NAME"){
         return action.name;
     }
     return state;
 }
 
-function allreducer (params) {
-    
-}
+const rootreducer= combineReducers({
+    count: countreducer,
+    name: namereducer
+});
+const store=createStore(rootreducer);
+console.log("initialstate");  
+// 🛑 This just prints the text "initialstate"
+// ✅ FIX: You should print the actual state using:
+console.log("Initial state:", store.getState());    
